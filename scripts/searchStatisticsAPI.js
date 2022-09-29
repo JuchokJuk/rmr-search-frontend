@@ -1,4 +1,4 @@
-const service = "http://localhost:8006/searchStatistics/";
+const service = "https://rmr-search-server.onrender.com/searchStatistics/";
 
 async function getRequests() {
   const url = `${service}getRequests`;
