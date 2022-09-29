@@ -1,0 +1,10 @@
+.request-list {
+  background: var(--surface-2);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+.request-list_hidden {
+  opacity: 0;
+  transform: translateY(32px);
+}

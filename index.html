@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Что искали на redmadrobot.ru</title>
+
+    <link href="styles/caption.css" rel="stylesheet">
+    <link href="styles/exel.css" rel="stylesheet">
+    <link href="styles/header.css" rel="stylesheet">
+    <link href="styles/main.css" rel="stylesheet">
+    <link href="styles/page.css" rel="stylesheet">
+    <link href="styles/requestItem.css" rel="stylesheet">
+    <link href="styles/requestList.css" rel="stylesheet">
+    <link href="styles/reset.css" rel="stylesheet">
+    <link href="styles/scroll.css" rel="stylesheet">
+    <link href="styles/widthControl.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="width-control-container">
+        <div class="width-control">
+            <div class="page-container">
+
+                <div class="header">
+                    <div class="header__text">
+                        <h1 class="header__headline">Что искали на redmadrobot.ru</h1>
+                        <p class="header__caption caption" id="caption">Загружаем историю запросов ...</p>
+                    </div>
+                    <a class="header__exel header__exel_disabled" id="download-button">
+                        <img class="header__exel__image" src="images/excel.svg">
+                        <p class="caption">скачать .csv</p>
+                    </a>
+                </div>
+
+                <div class="request-list request-list_hidden" id="request-list"></div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/htmlToElement.js"></script>
+    <script src="scripts/colorScheme.js"></script>
+    <script src="scripts/fetchWithTimeout.js"></script>
+    <script src="scripts/searchStatisticsAPI.js"></script>
+    <script src="scripts/index.js"></script>
+</body>
+
+</html>
