@@ -13,8 +13,8 @@ let requests;
     dataLoaded = false;
   }
 
-  const loadingTime = 1000;
-  setTimeout(() => {
+  // const loadingTime = 1000;
+  // setTimeout(() => {
     if (dataLoaded) {
       if(requests.length > 0){
         successHandler();
@@ -24,7 +24,7 @@ let requests;
     } else {
       failureHandler();
     }
-  }, loadingTime);
+  // }, loadingTime);
 })();
 
 function successHandler() {
