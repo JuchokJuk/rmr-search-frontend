@@ -14,3 +14,18 @@ async function getRequests() {
   const rquests = await response.json();
   return rquests;
 }
+
+async function getSequence(id) {
+  const url = `${service}getSequence/${id}`;
+
+  response = await fetchWithTimeout(url, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    method: "GET",
+  });
+
+  const sequence = await response.json();
+  return sequence;
+}

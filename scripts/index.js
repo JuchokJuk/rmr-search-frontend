@@ -8,32 +8,61 @@ let requests;
   let dataLoaded;
   try {
     requests = await getRequests();
-    dataLoaded = true;
+    if (requests.error) {
+      dataLoaded = false;
+    } else {
+      dataLoaded = true;
+    }
   } catch (e) {
     dataLoaded = false;
   }
 
   // const loadingTime = 1000;
   // setTimeout(() => {
-    if (dataLoaded) {
-      if(requests.length > 0){
-        successHandler();
-      }else{
-        emptyDataHandller()
-      }
+  if (dataLoaded) {
+    if (requests.length > 0) {
+      successHandler();
     } else {
-      failureHandler();
+      emptyDataHandller()
     }
+  } else {
+    failureHandler();
+  }
   // }, loadingTime);
 })();
 
+async function showSequence(event, id) {
+  const sequence = await getSequence(id)
+
+  for (let i = 0; i < sequence.length; i++) {
+    sequence[i].request_time = Date.parse(sequence[i].request_time);
+  }
+  sequence.sort(byField('request_time'))
+
+  let sequenceFromNow = JSON.parse(JSON.stringify(sequence))
+  for (let i = 0; i < sequence.length; i++) {
+    sequenceFromNow[i].request_time = (1 + i) * 150;
+  }
+
+  console.log(event.target, sequenceFromNow);
+
+  for (const item of sequenceFromNow) {
+    setTimeout(() => {
+      event.target.innerText = item.request
+    }, item.request_time)
+  }
+
+}
+
 function successHandler() {
   requestsList.classList.remove("request-list_hidden");
-  for (const request of requests) {
-    const item = htmlToElement(
-      `<div class="request-list__item">${request}</div>`
-    );
-    requestsList.appendChild(item);
+  for (const requestObject of requests) {
+    for (const request of requestObject.requests) {
+      const item = htmlToElement(
+        `<div class="request-list__item" onclick="showSequence(event,${requestObject.id})">${request}</div>`
+      );
+      requestsList.appendChild(item);
+    }
   }
 
   const captionText = createCaption();
@@ -53,7 +82,7 @@ function successHandler() {
   downloadButton.classList.remove("header__exel_disabled");
 }
 
-function emptyDataHandller(){
+function emptyDataHandller() {
   caption.classList.add("header__caption_hidden");
   setTimeout(() => {
     caption.innerText = "Пока что, никто ничего не искал";
@@ -92,4 +121,8 @@ function createCaption() {
 
   const caption = `История запросов c ${monthAgo} по ${currentDate}`;
   return caption;
+}
+
+function byField(field) {
+  return (a, b) => a[field] > b[field] ? 1 : -1;
 }
