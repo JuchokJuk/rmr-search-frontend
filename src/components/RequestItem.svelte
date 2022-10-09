@@ -2,7 +2,7 @@
   import { getSequence } from "../API/searchStatisticsAPI";
   import { byField } from "../helpers/byField";
   export let id;
-  let text = " ";
+  let text = "​";
   let animating = false;
 
   async function showSequence(id) {
@@ -25,7 +25,7 @@
         }
 
         setTimeout(() => {
-          text = " ";
+          text = "​";
         }, (sequence.length + 2) * typeAnimationSpeed);
 
         setTimeout(() => {
