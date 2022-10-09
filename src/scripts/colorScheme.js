@@ -1,24 +1,27 @@
+import { htmlToElement } from '../helpers/htmlToElement'
 function setColorScheme(scheme) {
   let root = document.documentElement;
   switch (scheme) {
     case "dark":
+      root.style.setProperty("--primary", "hsl(100, 100%, 70%)");
       root.style.setProperty("--surface-1", "hsl(100, 5%, 9%)");
       root.style.setProperty("--surface-2", "hsl(100, 5%, 14%)");
       root.style.setProperty("--surface-3", "hsl(100, 3%, 19%)");
       root.style.setProperty("--line-1", "hsl(100, 12%, 83%)");
       root.style.setProperty("--line-2", "hsl(100, 11%, 67%)");
 
-      changeFavicon("images/favicon-light.svg");
+      changeFavicon("/favicon-light.svg");
       break;
 
     case "light":
+      root.style.setProperty("--primary", "hsl(100, 100%, 70%)");
       root.style.setProperty("--surface-1", "hsl(100, 25%, 98%)");
       root.style.setProperty("--surface-2", "hsl(100, 17%, 94%)");
       root.style.setProperty("--surface-3", "hsl(100, 12%, 90%)");
       root.style.setProperty("--line-1", "hsl(100, 3%, 30%)");
       root.style.setProperty("--line-2", "hsl(100, 5%, 35%)");
 
-      changeFavicon("images/favicon-dark.svg");
+      changeFavicon("/favicon-dark.svg");
       break;
   }
 }
@@ -39,7 +42,6 @@ window
     setColorScheme(newColorScheme);
   });
 
-document.head = document.head || document.getElementsByTagName("head")[0];
 
 function changeFavicon(src) {
   const link = htmlToElement(

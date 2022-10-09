@@ -1,9 +1,11 @@
+import { fetchWithTimeout } from '../helpers/fetchWidthTimeout'
+
 const service = "https://rmr-search-server.onrender.com/searchStatistics/";
 
-async function getRequests() {
+export async function getRequests() {
   const url = `${service}getRequests`;
 
-  response = await fetchWithTimeout(url, {
+  const response = await fetchWithTimeout(url, {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -11,14 +13,14 @@ async function getRequests() {
     method: "GET",
   });
 
-  const rquests = await response.json();
-  return rquests;
+  const requests = await response.json();
+  return requests;
 }
 
-async function getSequence(id) {
+export async function getSequence(id) {
   const url = `${service}getSequence/${id}`;
 
-  response = await fetchWithTimeout(url, {
+  const response = await fetchWithTimeout(url, {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
